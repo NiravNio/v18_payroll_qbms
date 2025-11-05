@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_end_of_service_tree" model="ir.ui.view">
+        <field name="name">hr.end.of.service.tree</field>
+        <field name="model">hr.end.of.service</field>
+        <field name="arch" type="xml">
+            <list string="End of Service Records">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="contract_id"/>
+                <field name="service_start_date"/>
+                <field name="service_end_date"/>
+                <field name="years_of_service"/>
+                <field name="gratuity_amount"/>
+                <field name="leave_payout_amount"/>
+                <field name="total_settlement"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_hr_end_of_service_form" model="ir.ui.view">
+        <field name="name">hr.end.of.service.form</field>
+        <field name="model">hr.end.of.service</field>
+        <field name="arch" type="xml">
+            <form string="End of Service">
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object" invisible="state != 'draft'" class="btn-primary"/>
+                    <button name="action_done" string="Mark Done" type="object" invisible="state != 'confirmed'" class="btn-primary"/>
+                    <button name="action_reset_to_draft" string="Reset to Draft" type="object" invisible="state not in ('confirmed','done')"/>
+                    <field name="state" widget="statusbar" invisible="state not in ('draft','confirmed','done')"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id" options="{'no_create': True}"/>
+                            <field name="contract_id"/>
+                            <field name="service_start_date"/>
+                            <field name="service_end_date"/>
+                            <field name="settlement_date"/>
+                            <field name="free_zone_rule"/>
+                            <field name="wage_base"/>
+                            <field name="daily_wage" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="years_of_service" readonly="1"/>
+                            <field name="leave_balance_days"/>
+                            <field name="annual_leave_days_per_year"/>
+                            <field name="other_payments"/>
+                            <field name="deductions"/>
+                            <field name="currency_id" groups="base.group_multi_currency"/>
+                        </group>
+                    </group>
+
+                    <group string="Computed Amounts">
+                        <group>
+                            <field name="gratuity_amount" readonly="1"/>
+                            <field name="leave_payout_amount" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="total_settlement" readonly="1" widget="monetary"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Notes">
+                            <field name="note" placeholder="Internal notes..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_end_of_service" model="ir.actions.act_window">
+        <field name="name">End of Service</field>
+        <field name="res_model">hr.end.of.service</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p>
+                Create and compute End of Service settlements according to UAE labor law or selected free zone rules.
+            </p>
+        </field>
+    </record>
+
+</odoo>
+
+

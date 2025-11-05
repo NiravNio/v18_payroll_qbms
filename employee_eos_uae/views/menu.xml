@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add submenu under Employees -->
+    <menuitem id="menu_hr_eos_root" name="End of Service" parent="hr.menu_hr_root" sequence="60"/>
+
+    <menuitem id="menu_hr_eos" name="EOS Settlements" parent="menu_hr_eos_root" action="action_hr_end_of_service" sequence="10"/>
+</odoo>
+
+
