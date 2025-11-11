@@ -42,7 +42,7 @@ class HrEndOfService(models.Model):
 
     currency_id = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env.company.currency_id.id)
 
-    note = fields.Text(string='Notes')
+    note = fields.Text(string='Details Notes')
     state = fields.Selection([
         ('draft', 'Draft'),
         ('confirmed', 'Confirmed'),
