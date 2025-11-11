@@ -158,6 +158,7 @@ class HrEndOfService(models.Model):
     def action_confirm(self):
         for record in self:
             record.name = amount
+            
             if record.name == _('New'):
                 record.name = self.env['ir.sequence'].next_by_code('hr.end.of.service') or _('New')
             record.state = 'confirmed'
@@ -170,6 +171,7 @@ class HrEndOfService(models.Model):
     def action_reset_to_draft(self):
         for record in self:
             record.state = 'draft'
+
 
 
 
