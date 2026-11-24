@@ -2,7 +2,7 @@
 {
     'name': 'Employee End of Service - UAE',
     'summary': 'Compute UAE-compliant End of Service (EOS) settlements with free zone rules and unused leave payout',
-    'version': '18.0.1.0.1',
+    'version': '20.0.1.0.1',
     'category': 'Human Resources/Employees',
     'author': 'Your Company',
     'website': 'https://example.com',
